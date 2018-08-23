@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { addGreeting } from './actions/index';
 
 class Home extends React.Component {
 
@@ -9,22 +10,18 @@ class Home extends React.Component {
 
     fetchData = () => {
         let {dispatch} = this.props;
-        fetch('/home')
+        fetch('/website')
         .then(response => {
             return response.json()
         })
         .then(response => { 
-            dispatch( {type: 'update_greeting', greeting : response })
+            dispatch(addGreeting(greeting))
         });
     };
 
     render() {
-        let title = this.props.greeting.map((greet, i) => {
-            return <h1 key={i}>{greet.title}</h1>
-        })
-        let description = this.props.greeting.map((intro, i) => {
-            return <p key={i}>{intro.description}</p>
-        })
+        let title = this.props.greeting.title;
+        let description = this.props.greeting.description;
         return (
             <div>
                 <div>{title}</div>

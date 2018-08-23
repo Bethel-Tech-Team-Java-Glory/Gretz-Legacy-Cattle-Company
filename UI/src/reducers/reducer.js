@@ -1,13 +1,14 @@
 import Redux from 'redux';
+import { UPDATE_GREETING } from "./actions/index";
 
 let initialState = {
-    greeting: []
+    greeting: {}
 }
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'update_greeting':
-            return {...state, greeting: action.greeting};
+        case UPDATE_GREETING:
+            return Object.assign({}, state, {greeting: action.payload});
         default:
             return state;
     }
