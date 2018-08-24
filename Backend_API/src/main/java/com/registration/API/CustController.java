@@ -43,7 +43,6 @@ public class CustController {
 			Cust customer = repo.findById(id);
 			customer.setFirstName(updateCustomer.getFirstName());
 			customer.setLastName(updateCustomer.getLastName());
-			customer.setPhoneNumber(updateCustomer.getPhoneNumber());
 			customer.setEmail(updateCustomer.getEmail());
 			return repo.save(customer);
 }

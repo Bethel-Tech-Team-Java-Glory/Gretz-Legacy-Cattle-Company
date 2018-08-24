@@ -26,7 +26,6 @@ package com.registration.API;
 		private Long id;
 		private String firstName;
 		private String lastName;
-		private Integer phoneNumber;
 		private String email;
 		
 		public Long getId() {
@@ -53,13 +52,6 @@ package com.registration.API;
 			this.lastName = lastName;
 		}
 
-		public Integer getPhoneNumber() {
-			return phoneNumber;
-		}
-
-		public void setPhoneNumber(Integer phoneNumber) {
-			this.phoneNumber = phoneNumber;
-		}
 
 		public String getEmail() {
 			return email;
