@@ -16,6 +16,7 @@ const Index = ({store}) => (
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/signup">Sign Up</NavLink></li>
                     <li><NavLink to="/login">Log In</NavLink></li>
+                    <li><NavLink to="/service">Services</NavLink></li>
                 </ul>
                 <div className="content">
                     <Route exact path="/" component={Home} />
