@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
-import { Home } from './screens';
+import { Home, ServiceList } from './screens';
 import './index.css';
 
 import { createStore }  from 'redux';
@@ -19,6 +19,7 @@ const Index = ({store}) => (
                 </ul>
                 <div className="content">
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/service" component={ServiceList} />
                     
                 </div>
                 

@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { addGreeting } from './actions/index';
 
 class Home extends React.Component {
 
@@ -15,7 +14,7 @@ class Home extends React.Component {
             return response.json()
         })
         .then(response => { 
-            dispatch(addGreeting(greeting))
+            dispatch({type: 'UPDATE_GREETING', payload: response})
         });
     };
 

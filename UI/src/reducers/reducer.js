@@ -1,5 +1,5 @@
 import Redux from 'redux';
-import { UPDATE_GREETING } from "./actions/index";
+import { UPDATE_GREETING } from './actions.js';
 
 let initialState = {
     greeting: {}
