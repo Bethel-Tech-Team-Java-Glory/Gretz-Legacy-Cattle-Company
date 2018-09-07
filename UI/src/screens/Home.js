@@ -19,8 +19,14 @@ class Home extends React.Component {
     };
 
     render() {
-        let title = this.props.greeting.title;
-        let description = this.props.greeting.description;
+        // let title = this.props.greeting.title;
+        // let description = this.props.greeting.description;
+        let title = this.props.greeting.map((greet, i) => {
+            return <h1 key={i}>{greet.title}</h1>
+        })
+        let description = this.props.greeting.map((intro, i) => {
+            return <p key={i}>{intro.description}</p>
+        })
         return (
             <div>
                 <div>{title}</div>

@@ -24,6 +24,7 @@ class ServiceList extends React.Component {
         })
         return (
             <div>
+                <p>What services are you interested in?</p>
                 <form onSubmit={this.handleFormSubmit}>
                     <input type="checkbox" /><label>{serviceName}</label><br />
                     <button className="btn btn-default" type="submit">Select</button>

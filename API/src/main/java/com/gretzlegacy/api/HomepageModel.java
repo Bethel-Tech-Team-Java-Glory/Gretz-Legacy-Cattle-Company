@@ -7,20 +7,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "website")
+@Table(name = "homepage")
 public class HomepageModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
-	private Integer idweb;
+	private Integer id;
 	private String title;
 	private String description;
-	public Integer getIdweb() {
-		return idweb;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setIdweb(Integer idweb) {
-		this.idweb = idweb;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getTitle() {
 		return title;

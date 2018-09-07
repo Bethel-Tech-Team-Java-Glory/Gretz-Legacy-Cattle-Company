@@ -1,6 +1,6 @@
 
 export const UPDATE_GREETING = "UPDATE_GREETING";
-export const UPDATE_SERVICE = "UPDATE_SERVICE";
+// export const UPDATE_SERVICE = "UPDATE_SERVICE";
 
 export function addGreeting(greeting) {
     return {
@@ -9,9 +9,9 @@ export function addGreeting(greeting) {
     }
 }
 
-export function addService(service) {
-    return {
-    type: UPDATE_SERVICE,
-    payload: service
-    }
-}
+// export function addService(service) {
+//     return {
+//     type: UPDATE_SERVICE,
+//     payload: service
+//     }
+// }
