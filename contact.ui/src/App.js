@@ -21,7 +21,9 @@ var ContactForm = React.createClass({
     this.props.onChange(Object.assign({}, this.props.value, {phoneNumber: e.target.value}));
   },
   
-/* Comment Box */
+  onCommentChange: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {comment: e.target.value}));
+  },
 
   onSubmit: function(e) {
     e.preventDefault();
@@ -47,7 +49,11 @@ var ContactForm = React.createClass({
           value: this.props.value.phoneNumber,
           onChange: this.onPhoneNumberChange,
         }),
-       /* Comment */
+        React.createElement('textarea', {
+          placeholder: 'Comment',
+          value: this.props.value.comment,
+          onChange: this.onCommentChange,
+        }),
 
         React.createElement('button', {type: 'submit', className: "btn btn-info"}, "Submit")
       )
@@ -60,7 +66,7 @@ var ContactItem = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     phoneNumber: React.PropTypes.string.isRequired,
-   /* Comment */
+    comment: React.PropTypes.string,
   },
 
   render: function() {
@@ -68,7 +74,7 @@ var ContactItem = React.createClass({
       React.createElement('li', {className: 'ContactItem'},
         React.createElement('h2', {className: 'ContactItem-name'}, this.props.name),
         React.createElement('h5', {className: 'ContactItem-phoneNumber'}, this.props.phoneNumber),
-     /* Comment */
+        React.createElement('div', {className: 'ContactItem-comment'}, this.props.comment)
     )
     );
   },
@@ -107,8 +113,7 @@ var ContactView = React.createClass({
  * Constants
  */
 
-/* Add Comment */
-var CONTACT_TEMPLATE = {name: "", phoneNumber: "", errors: null};
+var CONTACT_TEMPLATE = {name: "", phoneNumber: "", comment: "", errors: null};
 
 
 
@@ -135,7 +140,7 @@ function submitNewContact() {
   setState(
     Object.keys(contact.errors).length === 0 ? {
         newContact: Object.assign({}, CONTACT_TEMPLATE),
-        contacts: state.contacts.slice(0).concat(contact),
+        contacts: state.contacts.slice(0).contact(contact),
       }
     : { newContact: contact }
   );
@@ -166,7 +171,7 @@ function setState(changes) {
 // Set initial data
 setState({
   contacts: [
-    {key: 1, name: "James K Nelson", phoneNumber: "756-739-9876", description: "Front-end Unicorn"},
+    {key: 1, name: "James K Nelson", phoneNumber: "756-739-9876", comment: "I like this page"},
     {key: 2, name: "Jim", phoneNumber: "987-123-7365"},
   ],
   newContact: Object.assign({}, CONTACT_TEMPLATE),
