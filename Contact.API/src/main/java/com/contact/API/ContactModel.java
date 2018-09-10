@@ -23,10 +23,9 @@ public class ContactModel {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	private Integer id;
-	private String firstName;
-	private String lastName;
-	private String email;
+	private String name;
 	private Integer phoneNumber;
+	
 	
 	public Integer getId() {
 		return id;
@@ -36,21 +35,14 @@ public class ContactModel {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 	public Integer getPhoneNumber() {
 		return phoneNumber;
@@ -60,13 +52,7 @@ public class ContactModel {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 
 	public Date getCreatedAt() {
 		return createdAt;

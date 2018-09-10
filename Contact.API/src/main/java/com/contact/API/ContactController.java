@@ -20,9 +20,15 @@ public class ContactController {
 	private ContactRepository repo;
 	
 	@RequestMapping(value="/getAll", method=RequestMethod.GET)
-	public Iterable<ContactModel> getAllCustomers(){
+	public Iterable<ContactModel> getAllContacts(){
 		return repo.findAll();
 	}
 	
-	
+	@RequestMapping(value= {"/"}, method=RequestMethod.POST)
+	public ContactModel login() {
+		ContactModel model = new ContactModel();
+		
+		model.setName("name");
+		return model;
+	}
 }
