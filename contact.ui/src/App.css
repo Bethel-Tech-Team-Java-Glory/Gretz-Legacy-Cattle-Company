@@ -25,13 +25,13 @@ body {
   font-weight: bold;
   margin: 0;
 }
-.ContactItem-phoneNumber {
+.ContactItem-email {
   font-size: 14px;
   margin-top: 4px;
   font-style: italic;
   color: #888;
 }
-.ContactItem-comment {
+.ContactItem-description {
   font-size: 14px;
   margin-top: 4px;
 }

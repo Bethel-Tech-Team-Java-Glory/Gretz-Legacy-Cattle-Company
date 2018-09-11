@@ -17,7 +17,7 @@ var ContactForm = React.createClass({
     this.props.onChange(Object.assign({}, this.props.value, {name: e.target.value}));
   },
   
-  onPhoneNumberChange: function(e) {
+  onEmailChange: function(e) {
     this.props.onChange(Object.assign({}, this.props.value, {phoneNumber: e.target.value}));
   },
   
@@ -44,7 +44,7 @@ var ContactForm = React.createClass({
         }),
         React.createElement('input', {
           type: 'number',
-          className: errors.phoneNumber && 'ContactForm-error',
+          className: errors.email && 'ContactForm-error',
           placeholder: 'Phone Number (required)',
           value: this.props.value.phoneNumber,
           onChange: this.onPhoneNumberChange,
@@ -54,7 +54,6 @@ var ContactForm = React.createClass({
           value: this.props.value.comment,
           onChange: this.onCommentChange,
         }),
-
         React.createElement('button', {type: 'submit', className: "btn btn-info"}, "Submit")
       )
     );
@@ -75,7 +74,7 @@ var ContactItem = React.createClass({
         React.createElement('h2', {className: 'ContactItem-name'}, this.props.name),
         React.createElement('h5', {className: 'ContactItem-phoneNumber'}, this.props.phoneNumber),
         React.createElement('div', {className: 'ContactItem-comment'}, this.props.comment)
-    )
+      )
     );
   },
 });
@@ -113,6 +112,7 @@ var ContactView = React.createClass({
  * Constants
  */
 
+
 var CONTACT_TEMPLATE = {name: "", phoneNumber: "", comment: "", errors: null};
 
 
@@ -140,7 +140,7 @@ function submitNewContact() {
   setState(
     Object.keys(contact.errors).length === 0 ? {
         newContact: Object.assign({}, CONTACT_TEMPLATE),
-        contacts: state.contacts.slice(0).contact(contact),
+        contacts: state.contacts.slice(0).concat(contact),
       }
     : { newContact: contact }
   );
@@ -171,7 +171,7 @@ function setState(changes) {
 // Set initial data
 setState({
   contacts: [
-    {key: 1, name: "James K Nelson", phoneNumber: "756-739-9876", comment: "I like this page"},
+    {key: 1, name: "James K Nelson", phoneNumber: "756-739-9876", comment: "I like this site!"},
     {key: 2, name: "Jim", phoneNumber: "987-123-7365"},
   ],
   newContact: Object.assign({}, CONTACT_TEMPLATE),
