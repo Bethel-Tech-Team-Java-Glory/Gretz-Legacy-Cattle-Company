@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,22 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/contact")
+@RequestMapping
 public class ContactController {
 
 	@Autowired
-	private ContactRepository repo;
+	private ContactRepository contactRepository;
 	
-	@RequestMapping(value="/getAll", method=RequestMethod.GET)
+	@RequestMapping(value = "/contact", method=RequestMethod.GET)
 	public Iterable<ContactModel> getAllContacts(){
-		return repo.findAll();
+		return contactRepository.findAll();
 	}
 	
-	@RequestMapping(value= {"/"}, method=RequestMethod.POST)
-	public ContactModel login() {
-		ContactModel model = new ContactModel();
-		
-		model.setName("name");
-		return model;
-	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	  public ContactModel create(@RequestBody ContactModel contact){
+	     return contact; 
+	  }
+
 }
