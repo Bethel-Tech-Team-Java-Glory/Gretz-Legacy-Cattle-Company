@@ -25,8 +25,10 @@ public class ContactModel {
 	private Integer id;
 	private String name;
 	private Integer phoneNumber;
+	private String comment;
 	
 	
+
 	public Integer getId() {
 		return id;
 	}
@@ -51,7 +53,14 @@ public class ContactModel {
 	public void setPhoneNumber(Integer phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	
+	public String getComment() {
+		return comment;
+	}
 
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	
 
 	public Date getCreatedAt() {

@@ -1,0 +1,11 @@
+
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/company
+spring.datasource.username = root
+spring.datasource.password = password
+spring.datasource.name=company
+
+#spring.security.user.name=admin
+#spring.security.user.password=password
+##management.security.enabled=false
+#management.endpoints.web.expose=*

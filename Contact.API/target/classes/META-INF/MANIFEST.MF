@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: celestegretz
+Build-Jdk: 10.0.1
+Implementation-Title: Contact.API
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.contact
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Contact.API
+Created-By: Maven Integration for Eclipse
+
