@@ -10,29 +10,17 @@ class Home extends React.Component {
         }
     }
 
-    // fetchData() {
-    //     fetch('/website')
-    //     .then(response => {
-    //         return response.json()
-    //     })
-    //     .then((greeting) => this.setState({greeting}))
-    // }
+    fetchData() {
+        fetch('/website')
+        .then(response => {
+            return response.json()
+        })
+        .then((greeting) => this.setState({greeting}))
+    }
 
     componentDidMount() {
         this.fetchData();
     }
-
-    // fetchData = () => {
-    //     let { dispatch } = this.props;
-    //     fetch('/website')
-    //     .then(response => {
-    //         return response.json()
-    //     })
-    //     .then(response => { 
-    //         // dispatch({type: 'UPDATE_GREETING', payload: response})
-    //         dispatch(addGreeting(response))
-    //     });
-    // };
 
     render() {
         let title = this.state.greeting.map((greeting) => {

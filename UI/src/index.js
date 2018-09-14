@@ -19,7 +19,7 @@ const Index = () => (
                     <li><NavLink to="/service">Services</NavLink></li>
                 </ul>
                 <div className="content">
-                    {/* <Route exact path="/" component={Home} /> */}
+                    <Route exact path="/" component={Home} />
                     <Route path="/service" component={ServiceList} />
                 </div>
                 
