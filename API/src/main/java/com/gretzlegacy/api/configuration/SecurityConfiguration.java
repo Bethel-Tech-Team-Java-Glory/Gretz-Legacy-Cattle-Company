@@ -1,4 +1,4 @@
-package com.gretzlegacy.configuration;
+package com.gretzlegacy.api.configuration;
 
 import javax.sql.DataSource;
 
@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private DataSource dataSource;
 	
-	private final String USERS_QUERY = "select username, password from user where username=?";
+	private final String USERS_QUERY = "select username, password, active from user where username=?";
 	private final String ROLES_QUERY = "select u.username, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id)  where u.username=?";
 	
 	@Override
@@ -39,19 +39,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-			.antMatchers("/","/website").permitAll()
+			.antMatchers("/","/website", "/homepage", "/**/*.css").permitAll()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/signup").permitAll()
 			.antMatchers("/home/**").hasAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and().csrf().disable()
-			.formLogin().loginPage("/login").failureUrl("/login?error=true")
-			.defaultSuccessUrl("/service/user")
+			.formLogin().loginPage("/login").permitAll().failureUrl("/login?error=true")
+			.defaultSuccessUrl("/service")
 			.usernameParameter("username")
 			.passwordParameter("password")
 			.and().logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/")
+			.logoutSuccessUrl("/login")
 			.and().rememberMe()
 			.tokenRepository(persistentTokenRepository())
 			.tokenValiditySeconds(60*60)

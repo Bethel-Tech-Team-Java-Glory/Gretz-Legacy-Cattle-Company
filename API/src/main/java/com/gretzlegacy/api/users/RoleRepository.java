@@ -1,4 +1,4 @@
-package com.gretzlegacy.users;
+package com.gretzlegacy.api.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

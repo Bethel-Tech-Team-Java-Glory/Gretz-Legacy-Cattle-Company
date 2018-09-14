@@ -1,4 +1,4 @@
-package com.gretzlegacy.users;
+package com.gretzlegacy.api.users;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,13 +1,14 @@
-package com.gretzlegacy.service;
+package com.gretzlegacy.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.gretzlegacy.users.RoleModel;
-import com.gretzlegacy.users.RoleRepository;
-import com.gretzlegacy.users.UserModel;
-import com.gretzlegacy.users.UserRepository;
+import com.gretzlegacy.api.users.RoleModel;
+import com.gretzlegacy.api.users.RoleRepository;
+import com.gretzlegacy.api.users.UserModel;
+import com.gretzlegacy.api.users.UserRepository;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void saveUser(UserModel user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setActive(1);
 		RoleModel userRole = roleRepository.findByRole("ADMIN");
 		user.setRoles(new HashSet<RoleModel>(Arrays.asList(userRole)));
 		userRepository.save(user);

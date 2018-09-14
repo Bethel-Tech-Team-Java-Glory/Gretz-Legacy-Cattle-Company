@@ -1,4 +1,4 @@
-package com.gretzlegacy.users;
+package com.gretzlegacy.api.users;
 
 import java.util.Set;
 
@@ -35,6 +35,9 @@ public class UserModel {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "active")
+	private int active;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
@@ -75,6 +78,12 @@ public class UserModel {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public int getActive() {
+		return active;
+	}
+	public void setActive(int active) {
+		this.active = active;
 	}
 	public Set<RoleModel> getRoles() {
 		return roles;

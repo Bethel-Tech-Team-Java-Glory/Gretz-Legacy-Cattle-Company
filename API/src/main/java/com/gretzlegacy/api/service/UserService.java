@@ -1,6 +1,6 @@
-package com.gretzlegacy.service;
+package com.gretzlegacy.api.service;
 
-import com.gretzlegacy.users.UserModel;
+import com.gretzlegacy.api.users.UserModel;
 
 public interface UserService {
 
