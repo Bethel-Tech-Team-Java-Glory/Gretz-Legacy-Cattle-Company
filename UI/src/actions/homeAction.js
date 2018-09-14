@@ -1,4 +1,4 @@
-import {UPDATE_GREETING} from './types';
+import { UPDATE_GREETING } from './types';
 
 export function addGreeting(greeting) {
     return {

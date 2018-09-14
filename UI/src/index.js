@@ -6,9 +6,7 @@ import './index.css';
 
 // import { createStore }  from 'redux';
 import { Provider } from 'react-redux';
-import configStore from './store/index';
-
-const store = configStore();
+import store from './store/index';
 
 const Index = () => (
     <Provider store={store}>
@@ -21,7 +19,7 @@ const Index = () => (
                     <li><NavLink to="/service">Services</NavLink></li>
                 </ul>
                 <div className="content">
-                    <Route exact path="/" component={Home} />
+                    {/* <Route exact path="/" component={Home} /> */}
                     <Route path="/service" component={ServiceList} />
                 </div>
                 

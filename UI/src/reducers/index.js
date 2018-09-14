@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import { homeGreeting } from './homeReducer';
+import homeReducer from './homeReducer';
 import serviceReducer from './serviceReducer';
 
-export default combineReducers({
-    homeGreeting,
-    serviceReducer
+const allReducers = combineReducers({
+    greeting: homeReducer,
+    serviceItems: serviceReducer
 });
+
+export default allReducers;

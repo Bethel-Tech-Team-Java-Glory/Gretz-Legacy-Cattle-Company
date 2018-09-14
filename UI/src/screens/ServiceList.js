@@ -10,21 +10,6 @@ const serviceItem = [
 
 class ServiceList extends React.Component {
 
-    // componentDidMount() {
-    //     this.fetchData();
-    // }
-
-    // fetchData = () => {
-    //     let {dispatch} = this.props;
-    //     fetch('/servicelist')
-    //     .then(response => {
-    //         return response.json()
-    //     })
-    //     .then(response => { 
-    //         dispatch( {type: 'UPDATE_SERVICE', payload : response })
-    //     });
-    // };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -59,22 +44,26 @@ class ServiceList extends React.Component {
 
     addItem(e){
         e.preventDefault();
+        
         // const newItem = this.newItem.value;
         // this.setState({
         //     selectedItems: [...this.state.serviceItems, newItem]
         // })
-        // var checkedItems = '';
+        const checkedItems = this.state.allSelectedItems;
         // for (const itemList of this.state.allSelectedItems){
-        //     checkedItems += itemList + ",";
+        //     checkedItems += itemList + ", ";
         // }
 
-        // console.log(checkedItems);
-
-        const newList = this.newList.addItem;
+        console.log(checkedItems);
         this.setState({
-            selectedItem: [...this.state.allSelectedItems, newList]
-        })
-        console.log(newList);
+            checkedItems: this.itemList
+        });
+
+        // const newList = this.newList.addItem;
+        // this.setState({
+        //     selectedItem: [...this.state.allSelectedItems, newList]
+        // })
+        // console.log(newList);
     }
 
     render() {
@@ -143,4 +132,6 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps)(ServiceList);
+export default connect(mapStateToProps, )(ServiceList);
+
+// export default ServiceList;

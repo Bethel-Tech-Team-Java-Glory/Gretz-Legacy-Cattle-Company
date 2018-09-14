@@ -10,13 +10,13 @@ class Home extends React.Component {
         }
     }
 
-    fetchData() {
-        fetch('/website')
-        .then(response => {
-            return response.json()
-        })
-        .then((greeting) => this.setState({greeting}))
-    }
+    // fetchData() {
+    //     fetch('/website')
+    //     .then(response => {
+    //         return response.json()
+    //     })
+    //     .then((greeting) => this.setState({greeting}))
+    // }
 
     componentDidMount() {
         this.fetchData();
@@ -50,12 +50,10 @@ class Home extends React.Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         greeting: state.homeReducer
-//     }
-// }
+const mapStateToProps = state => ({
+    greeting: state.greeting
+});
 
 // export default connect(mapStateToProps)(Home);
 
-export default Home;
+export default connect(mapStateToProps)(Home);

@@ -5,10 +5,10 @@ let initialState = {
     greeting: []
 }
 
-export function homeGreeting(state = initialState, action) {
-    switch(action.type) {
+export default function homeReducer(state = initialState, {type, payload}) {
+    switch(type) {
         case UPDATE_GREETING:
-            return {...state, greeting: action.greeting};
+            return payload;
 
         default:
             return state;

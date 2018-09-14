@@ -11,9 +11,9 @@ function serviceReducer(state, action) {
     }
     switch (action.type) {
         case SERVICE_SELECTED:
-            return Object.assign({}, state, {
+            return {
                 serviceItems: [...state.serviceItems, action.payload]
-            })
+            } 
         case SERVICE_DESELECTED:
             return state;
         default:

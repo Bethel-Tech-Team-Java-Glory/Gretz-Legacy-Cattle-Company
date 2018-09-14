@@ -13,3 +13,5 @@ export function serviceDeselected(serviceItems) {
         payload: serviceItems
     }
 }
+
+export default { serviceSelected, serviceDeselected };
