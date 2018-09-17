@@ -1,29 +1,33 @@
 package com.gretzlegacy.api.companyservice;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
-@Entity
-@Table(name="service_list")
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@CrossOrigin(origins = "http://localhost:3000/")
+@RestController
+@RequestMapping
 public class ServiceListController {
-
-	@Id
-	@GeneratedValue
-	private Integer id;
-	private String serviceName;
-	public Integer getId() {
-		return id;
+	
+	@Autowired
+	private ServiceListRepository serviceListRepository;
+	
+	@GetMapping(path="/service-list")
+	public List<ServiceList> findAll(){
+		return serviceListRepository.findAll();
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getServiceName() {
-		return serviceName;
-	}
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	
+	@PostMapping(path="/service-list/add")
+	public ResponseEntity<ServiceList> newServiceList(@RequestBody ServiceList newServiceList) {
+		ServiceList createdService = serviceListRepository.save(newServiceList);
+		return ResponseEntity.ok(createdService);
 	}
 	
 	

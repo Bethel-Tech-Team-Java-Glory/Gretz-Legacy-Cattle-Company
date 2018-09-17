@@ -22,7 +22,6 @@ const Index = () => (
                     <Route exact path="/" component={Home} />
                     <Route path="/service" component={ServiceList} />
                 </div>
-                
             </div>
         </HashRouter>
     </Provider>
