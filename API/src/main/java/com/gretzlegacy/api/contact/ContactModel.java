@@ -2,6 +2,7 @@ package com.gretzlegacy.api.contact;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -12,19 +13,26 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Entity
-@Table(name = "/contact")
+@Table(name = "contact")
 @EntityListeners(AuditingEntityListener.class)
+
 
 public class ContactModel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
 	private Integer id;
+	
+	@Column(name = "name")
 	private String name;
-	private Integer phoneNumber;
+	
+	@Column(name = "phonenumber")
+	private Integer phonenumber;
+	
+	@Column(name = "comment")
 	private String comment;
 	
 	
@@ -46,12 +54,12 @@ public class ContactModel {
 	}
 
 
-	public Integer getPhoneNumber() {
-		return phoneNumber;
+	public Integer getPhonenumber() {
+		return phonenumber;
 	}
 
-	public void setPhoneNumber(Integer phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(Integer phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 	
 	public String getComment() {
