@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http.cors().and()
 			.authorizeRequests()
-			.antMatchers("/","/website", "/homepage", "/service-list", "/service-list/add", "/**/*.css").permitAll()
+			.antMatchers("/","/website", "/homepage", "/service-list", "/service-list/add", "/api/contact", "/**/*.css").permitAll()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/signup").permitAll()
 			.antMatchers("/home/**").hasAuthority("ADMIN")
