@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
 import { Home, ServiceList } from './screens';
+import FormContact from "./screens/FormContact";
 import './index.css';
 
 // import { createStore }  from 'redux';
@@ -17,10 +18,12 @@ const Index = () => (
                     <li><a href="http://localhost:8080/login">Log In</a></li>
                     <li><a href="http://localhost:8080/signup">Sign Up</a></li>
                     <li><NavLink to="/service">Services</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
                 </ul>
                 <div className="content">
                     <Route exact path="/" component={Home} />
                     <Route path="/service" component={ServiceList} />
+                    <Route path="/contact" component={FormContact} />
                 </div>
                 
             </div>
