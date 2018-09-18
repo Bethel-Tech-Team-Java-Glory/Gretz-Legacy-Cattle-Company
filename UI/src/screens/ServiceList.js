@@ -39,6 +39,7 @@ class ServiceList extends React.Component {
         console.log(newItem);
 
         fetch('/service-list/add', {
+            credentials: 'include',
             method: 'POST',
             mode: 'cors',
             headers: {'Content-Type': 'application/json'},

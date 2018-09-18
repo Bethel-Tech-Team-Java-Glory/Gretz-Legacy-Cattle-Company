@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping
 public class ServiceListController {
@@ -24,6 +23,7 @@ public class ServiceListController {
 		return serviceListRepository.findAll();
 	}
 	
+	@CrossOrigin(origins="http://localhost:3000/")
 	@PostMapping(path="/service-list/add")
 	public ResponseEntity<ServiceList> newServiceList(@RequestBody ServiceList newServiceList) {
 		ServiceList createdService = serviceListRepository.save(newServiceList);
