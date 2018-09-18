@@ -17,7 +17,7 @@ public class ContactController {
 	@Autowired
 	private ContactRepository contactRepository;
 	
-	@CrossOrigin(origins = "http://localhost:8080")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value = "/api/contact", method=RequestMethod.GET)
 	public Iterable<ContactModel> getAllContacts(){
 		return contactRepository.findAll();

@@ -24,9 +24,14 @@ class FormContact extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     //this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
   }
 
   /* This lifecycle hook gets executed when the component mounts */
+  
+  handleChange (event) {
+    this.setState( [event.target.name], event.target.value )
+  }
 
   handleName(e) {
     let value = e.target.value;
@@ -37,7 +42,7 @@ class FormContact extends Component {
           name: value
         }
       }),
-      //() => console.log(this.state.newUser)
+      () => console.log(this.state.newUser)
     );
   }
 
@@ -50,7 +55,7 @@ class FormContact extends Component {
           phoneNumber: value
         }
       }),
-     //() => console.log(this.state.newUser)
+     () => console.log(this.state.newUser)
     );
   }
 
@@ -64,7 +69,7 @@ class FormContact extends Component {
           [name]: value
         }
       }),
-      //() => console.log(this.state.newUser)
+      () => console.log(this.state.newUser)
     );
   }
 
@@ -78,7 +83,7 @@ class FormContact extends Component {
           about: value
         }
       }),
-      //() => console.log(this.state.newUser)
+      () => console.log(this.state.newUser)
     );
   }
 
@@ -91,13 +96,15 @@ class FormContact extends Component {
       method: "POST",
       body: JSON.stringify(userData),
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       }
     }).then(response => {
       response.json().then(data => {
         console.log("Successful" + data);
       });
+    }, function(error) {
+        console.log(error.message);
     });
   }
 
@@ -117,21 +124,21 @@ class FormContact extends Component {
       <form className="container-fluid" onSubmit={this.handleFormSubmit.bind(this)}>
         <h1>Contact Us</h1>
         <Input
-          inputType={"text"}
+          inputtype={"text"}
           title={"Name"}
           name={"name"}
           value={this.state.newUser.name}
           placeholder={"Enter your name"}
-          handleChange={this.handleInput}
+          onChange={this.handleInput}
         />{" "}
         {/* Name of the user */}
         <Input
-          inputType={"number"}
+          inputtype={"number"}
           name={"phoneNumber"}
           title={"Phone Number"}
           value={this.state.newUser.age}
           placeholder={"Enter your phone number"}
-          handleChange={this.handlePhoneNumber}
+          onChange={this.handlePhoneNumber}
         />{" "}
         {/* PhoneNumber */}
         <TextArea
