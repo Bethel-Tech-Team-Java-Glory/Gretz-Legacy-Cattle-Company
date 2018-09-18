@@ -25,7 +25,6 @@ const Index = () => (
                     <Route path="/service" component={ServiceList} />
                     <Route path="/contact" component={FormContact} />
                 </div>
-                
             </div>
         </HashRouter>
     </Provider>

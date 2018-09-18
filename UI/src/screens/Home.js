@@ -42,6 +42,4 @@ const mapStateToProps = state => ({
     greeting: state.greeting
 });
 
-// export default connect(mapStateToProps)(Home);
-
 export default connect(mapStateToProps)(Home);
