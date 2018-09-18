@@ -39,14 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.cors().and()
-<<<<<<< HEAD
-			.authorizeRequests()
-			.antMatchers("/","/website", "/homepage", "/service-list", "service-list/add", "/api/contact", "/**/*.css").permitAll()
-=======
 			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/","/website", "/homepage", "/service-list", "/service-list/add", "/api/contact", "/**/*.css").permitAll()
->>>>>>> ServiceList
 			.antMatchers("/login").permitAll()
 			.antMatchers("/signup").permitAll()
 			.antMatchers("/home/**").hasAuthority("ADMIN")

@@ -23,7 +23,7 @@ public class ServiceListController {
 		return serviceListRepository.findAll();
 	}
 	
-	@CrossOrigin(origins="http://localhost:3000/")
+	@CrossOrigin
 	@PostMapping(path="/service-list/add")
 	public ResponseEntity<ServiceList> newServiceList(@RequestBody ServiceList newServiceList) {
 		ServiceList createdService = serviceListRepository.save(newServiceList);

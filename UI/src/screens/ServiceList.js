@@ -6,7 +6,11 @@ class ServiceList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            serviceItems: []
+            serviceItems: [],
+            newItem: {
+                servicename: ""
+            },
+            message: ""
         }
 
         this.addItem = this.addItem.bind(this);
@@ -28,13 +32,13 @@ class ServiceList extends React.Component {
         e.preventDefault();
 
         const {serviceItems} = this.state;
-        const newItem = this.newItem.value;
+        const newItem = this.state.newItem;
 
         this.setState({
-            serviceItems: [...this.state.serviceItems, newItem]
+            serviceItems: [...this.state.serviceItems, newItem.servicename]
         })   
 
-        this.addForm.reset();
+        
 
         console.log(newItem);
 
@@ -66,10 +70,10 @@ class ServiceList extends React.Component {
                 <header>
                 <h3>Tell us what services you're interested in:</h3>
                 </header>
-                <form ref={input => this.addForm = input} method="post" className="form-inline" onSubmit={(e) => {this.addItem(e)}}>
+                <form method="post" className="form-inline" onSubmit={(e) => this.addItem(e)}>
                     <div className="form-group">
                         <label className="sr-only" htmlFor="newItemInput">Add New Item</label>
-                        <input ref={input => this.newItem = input} type="text" className="form-control" id="newItemInput" />
+                        <input onChange={(e) => this.setState({ newItem: { servicename: e.target.value } })} type="text" className="form-control" id="newItemInput" />
                     </div>
                     <Button className="btn btn-secondary" type="submit">Add</Button>
                 </form>
