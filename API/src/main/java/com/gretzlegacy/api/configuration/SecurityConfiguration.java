@@ -26,12 +26,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	private final String USERS_QUERY = "select username, password, active from user where username=?";
 	private final String ROLES_QUERY = "select u.username, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id)  where u.username=?";
+	//private final String CONTACT_QUERY = "select name, phone, comment, active from contact where name=?";
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 			.usersByUsernameQuery(USERS_QUERY)
 			.authoritiesByUsernameQuery(ROLES_QUERY)
+			//.contactByName(CONTACT_QUERY)
 			.dataSource(dataSource)
 			.passwordEncoder(bCryptPasswordEncoder);
 	}
