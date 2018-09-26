@@ -6,12 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "services")
 public class ServiceList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	
 	private Integer service_id;
 	private String servicename;

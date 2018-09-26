@@ -22,7 +22,7 @@ class FormContact extends Component {
     this.handlePhone = this.handlePhone.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    //this.handleClearForm = this.handleClearForm.bind(this);
+    this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
     //this.handleChange = this.handleChange.bind(this);
   }
@@ -71,6 +71,17 @@ class FormContact extends Component {
       }),
       () => console.log(this.state.newUser)
     );
+  }
+
+  handleClearForm(e) {
+    e.preventDefault();
+    this.setState({
+      newUser: {
+        name:"",
+        phone:"",
+        comment:""
+      }
+    })
   }
 
 
