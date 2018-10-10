@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import {addGreeting} from '../actions/actions';
 
 class Home extends React.Component {
     constructor() {

@@ -72,6 +72,14 @@ public class UserController {
 		return model;
 	}
 	
+	@RequestMapping(value= {"/contact"}, method=RequestMethod.GET)
+	public ModelAndView contactForm() {
+		ModelAndView model = new ModelAndView();
+		
+		model.setViewName("redirect:" + "http://localhost:3000/#/contact");
+		return model;
+	}
+	
 	@RequestMapping(value= {"/access_denied"}, method=RequestMethod.GET)
 	public ModelAndView accessDenied() {
 		ModelAndView model = new ModelAndView();

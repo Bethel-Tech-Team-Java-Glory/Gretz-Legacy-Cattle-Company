@@ -8,39 +8,32 @@ class ServiceList extends React.Component {
         this.state = {
             serviceItems: [],
             newItem: {
+                service_id: "",
                 servicename: ""
             },
             message: ""
         }
 
         this.addItem = this.addItem.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
 
-    // fetchData() {
-    //     fetch('/service-list')
-    //     .then(response => {
-    //         return response.json()
-    //     })
-    //     .then((serviceItems) => this.setState({serviceItems}))
-    // }
+    componentDidMount() {
+        this.fetchData();
+    }
 
-    // componentDidMount() {
-    //     this.fetchData();
-    // }
+    fetchData() {
+        fetch('/service-list')
+        .then(response => {
+            return response.json()
+        })
+        .then((serviceItems) => this.setState({serviceItems}))
+    }
 
     addItem(e){
         e.preventDefault();
 
-        const {serviceItems} = this.state;
         const newItem = this.state.newItem;
-
-        this.setState({
-            serviceItems: [...this.state.serviceItems, newItem.servicename]
-        })   
-
-        
-
-        console.log(newItem);
 
         fetch('/service-list/add', {
             credentials: 'include',
@@ -50,16 +43,19 @@ class ServiceList extends React.Component {
             body: JSON.stringify(newItem)
         })
         .then(res => res.json())
-        .then(console.log)
+        .then(this.setState({
+            serviceItems: [...this.state.serviceItems, newItem]
+        }))
+        .then(console.log(newItem))
     }
 
-    removeItem(item){
-        const newServiceItems = this.state.serviceItems.filter(serviceItems => {
-            return serviceItems !== item;
-        })
-
-        this.setState({
-            serviceItems: [...newServiceItems]
+    async removeItem(service_id) {
+        await fetch(`/service-list/${service_id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        }).then(() => {
+            let updatedItems = [...this.state.serviceItems].filter(i => i.service_id !== service_id);
+            this.setState({serviceItems: updatedItems})
         })
     }
 
@@ -92,11 +88,10 @@ class ServiceList extends React.Component {
                         <tbody>
                             {serviceItems.map(item => {
                                 return (
-                                   <tr key={item}>
-                                       <td>{item}</td>
+                                   <tr key={item.service_id}>
+                                       <td>{item.servicename}</td>
                                        <td className="text-left">
-                                            <Button bsSize="small" >Update</Button>
-                                            <Button onClick = {(e) => this.removeItem(item)} bsSize="small" >Remove</Button>
+                                            <Button onClick = {() => this.removeItem(item.service_id)} bsSize="small" >Remove</Button>
                                        </td>
                                    </tr>
                                )
@@ -110,132 +105,3 @@ class ServiceList extends React.Component {
 }
 
 export default ServiceList;
-
-//     constructor(props) {
-//         super(props);
-//         this.state = { 
-//             serviceItems: [
-//                 "Hay hauling",
-//                 "Beef",
-//                 "Hats"
-//             ]
-//         }
-
-//         this.handleInputChange = this.handleInputChange.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//     }
-
-//     // fetchServiceList = () => {
-//     //     const serviceItems = serviceItem.map((value, key) => {
-//     //         return <label className="checkbox" key={key}><input onChange={ () => this.selectedService(value)} checked={this.state.allSelectedItems.has(value)} name="serviceItem" type="checkbox" value={value}/> {value} </label>
-//     //     })
-//     //     return serviceItems;
-//     // }
-
-//     // componentWillMount() {
-//     //     this.selectedItem = new Set();
-//     // }
-
-//     // selectedService = (serviceItem) => {
-//     //     if (this.selectedItem.has(serviceItem)){
-//     //         this.selectedItem.delete(serviceItem);
-//     //     } else {
-//     //         this.selectedItem.add(serviceItem);
-//     //     }
-
-//     //     this.setState({
-//     //         allSelectedItems: this.selectedItem
-//     //     });
-
-//     //     console.log(this.state.allSelectedItems);
-//     // }
-
-//     // addItem(e){
-//     //     e.preventDefault();
-        
-//     //     // const newItem = this.newItem.value;
-//     //     // this.setState({
-//     //     //     selectedItems: [...this.state.serviceItems, newItem]
-//     //     // })
-//     //     const checkedItems = this.state.allSelectedItems;
-//     //     // for (const itemList of this.state.allSelectedItems){
-//     //     //     checkedItems += itemList + ", ";
-//     //     // }
-
-//     //     console.log(checkedItems);
-//     //     this.setState({
-//     //         checkedItems: this.itemList
-//     //     });
-//     // }
-
-//     handleInputChange(e) {
-//         // const target = e.target;
-//         // const value = target.type === 'checkbox' ? target.checked : target.item;
-
-//         // this.setState({[value] : e.target.value})
-//         let item = this.state.item
-//         this.setState(
-//             {item: item}
-//         )
-//     }
-
-//     handleSubmit(e) {
-//         e.preventDefault();
-//         function selectedService (serviceItem) {
-//             if (this.selectedItem.has(serviceItem)){
-//                 this.selectedItem.delete(serviceItem);
-//             } else {
-//                 this.selectedItem.add(serviceItem);
-//             }
-        
-//         this.setState({
-//             allSelectedItems: this.selectedService
-//         });
-//     }
-// }
-
-//     render() {
-//         return (
-//             <div>
-//                 <header>
-//                     <h3>What services are you interested in?</h3>
-//                     <form onSubmit={(e) => {this.handleSubmit(e)}}>
-//                         <label className="serviceList">
-//                         {
-//                             this.state.serviceItems.map(item => {
-//                                 return <p key={item}><input type="checkbox" ref={(selectedService) => {this.newItem = selectedService}} onChange={ () => this.selectedService(item)} checked={this.state.allSelectedItems.has(item)}/>{item}</p>
-//                             })
-//                         }
-//                         </label>
-//                         <br />
-//                         <button className="btn btn-default" type="submit">Select</button>
-//                     </form>
-//                 </header>
-
-//                 <div>
-//                     <table className="table">
-//                         <caption>Service List</caption>
-//                         <thead>
-//                             <tr>
-//                                 <th>Item</th>
-//                                 <th>Action</th>
-//                             </tr>
-//                         </thead>
-//                         <tbody>
-//                             {this.state.serviceItems.map(item => {
-//                                 return (
-//                                     <tr >
-//                                         <td>{item}</td>
-//                                         <td>Button</td>
-//                                     </tr>
-//                                 )
-//                             })}
-//                         </tbody>
-//                     </table>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
-
-// export default ServiceList;
