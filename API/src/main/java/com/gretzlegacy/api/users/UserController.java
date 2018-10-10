@@ -72,7 +72,7 @@ public class UserController {
 		return model;
 	}
 	
-	@RequestMapping(value= {"/contactform"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/contact"}, method=RequestMethod.GET)
 	public ModelAndView contactForm() {
 		ModelAndView model = new ModelAndView();
 		

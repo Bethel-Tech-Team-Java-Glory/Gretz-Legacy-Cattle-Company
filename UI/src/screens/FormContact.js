@@ -13,13 +13,13 @@ class FormContact extends Component {
     this.state = {
       newUser: {
         name: "",
-        phoneNumber: "",
+        phone: "",
         comment: ""
       },
     };
 
     this.handleTextArea = this.handleTextArea.bind(this);
-    this.handlePhoneNumber = this.handlePhoneNumber.bind(this);
+    this.handlePhone = this.handlePhone.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     //this.handleClearForm = this.handleClearForm.bind(this);
@@ -46,18 +46,33 @@ class FormContact extends Component {
     );
   }
 
-  handlePhoneNumber(e) {
+  handlePhone(e) {
     let value = e.target.value;
     this.setState(
       prevState => ({
         newUser: {
           ...prevState.newUser,
-          phoneNumber: value
+          phone: value
         }
       }),
      () => console.log(this.state.newUser)
     );
   }
+
+  handleTextArea(e) {
+    console.log("Inside handleTextArea");
+    let value = e.target.value;
+    this.setState(
+      prevState => ({
+        newUser: {
+          ...prevState.newUser,
+          comment: value
+        }
+      }),
+      () => console.log(this.state.newUser)
+    );
+  }
+
 
   handleInput(e) {
     let value = e.target.value;
@@ -73,55 +88,34 @@ class FormContact extends Component {
     );
   }
 
-  handleTextArea(e) {
-    console.log("Inside handleTextArea");
-    let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newUser: {
-          ...prevState.newUser,
-          about: value
-        }
-      }),
-      () => console.log(this.state.newUser)
-    );
-  }
-
+  
   handleFormSubmit(e) {
     e.preventDefault();
     //this.refs.form.reset();
     let userData = this.state.newUser;
+console.log(userData);
 
-    fetch("http://localhost:8080/api/contact", {
+    fetch("/api/contact", {
       method: "POST",
+      mode: "cors",
       body: JSON.stringify(userData),
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    }).then(response => {
-      response.json().then(data => {
-        console.log("Successful" + data);
-      });
-    }, function(error) {
-        console.log(error.message);
-    });
+      headers: {"Content-Type": "application/json"}, 
+  })
+  .then(response => response.json())
+    
+  .then(data => {console.log("Successful", data)})
   }
-
-  //handleClearForm(e) {
-    //e.preventDefault();
-   // this.setState({
-    //  newUser: {
-     //   name: "",
-     //   phoneNumber: "",
-     //   comment: ""
-    //  }
-   // });
- // }
-
+    
+    //function(error) {
+        //console.log(error.message);
+    //}
+  
+  
+    
   render() {
     return (
-      <form className="container-fluid" onSubmit={this.handleFormSubmit.bind(this)}>
+      <form className="container-fluid" onSubmit={(e) => this.handleFormSubmit(e)}>
+      
         <h1>Contact Us</h1>
         <Input
           inputtype={"text"}
@@ -133,20 +127,20 @@ class FormContact extends Component {
         />{" "}
         {/* Name of the user */}
         <Input
-          inputtype={"number"}
-          name={"phoneNumber"}
+          inputtype={"text"}
+          name={"phone"}
           title={"Phone Number"}
-          value={this.state.newUser.age}
+          value={this.state.newUser.phone}
           placeholder={"Enter your phone number"}
-          onChange={this.handlePhoneNumber}
+          onChange={this.handleInput}
         />{" "}
         {/* PhoneNumber */}
         <TextArea
           title={"Comment"}
           rows={10}
-          value={this.state.newUser.about}
+          value={this.state.newUser.comment}
           name={"comment"}
-          handleChange={this.handleTextArea}
+          handleChange={this.handleInput}
           placeholder={"Leave your comment here"}/>
         {/* Comment */}
         <Button 

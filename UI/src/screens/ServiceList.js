@@ -91,8 +91,6 @@ class ServiceList extends React.Component {
                                    <tr key={item.service_id}>
                                        <td>{item.servicename}</td>
                                        <td className="text-left">
-                                            <Button bsSize="small" >Update</Button>
-                                            {/* <Button onClick = {(e) => this.removeItem(item)} bsSize="small" >Remove</Button> */}
                                             <Button onClick = {() => this.removeItem(item.service_id)} bsSize="small" >Remove</Button>
                                        </td>
                                    </tr>
